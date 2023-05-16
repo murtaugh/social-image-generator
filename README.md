@@ -10,4 +10,4 @@ All the text areas are `contenteditable` so you can tweak the preview before gen
 2. It defaults to the same 1200x600 size that GitHub itself defaults to.
 3. The preview card needs to be fully in the viewport in order for html2canvas to be successful.
 4. Images can be tricky: I haven't successfully gotten a BG image to render, and the one SVG I've tried so far needed to be manually given the height and width I wanted. The height and width defined in the SVG itself was overriding any sizes I tried to give it via CSS.
-5. WordPress has this feature built in to Jetpack, but it uses a headless browser on the server to do the rendering. This allows it to generate and save the images all programmatically, but I can't be bothered. Until I harden the dseign to work in any circumstance, I'll want to preview the images anyway.
+5. WordPress has this feature built in to Jetpack, but it uses a headless browser on the server to do the rendering. This allows it to generate and save the images all programmatically, but I can't be bothered. Until I harden the design to work in any circumstance, I'll want to preview the images anyway.
