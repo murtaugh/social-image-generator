@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+	
+	<style>
+	:root {
+		--font-system: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* https://css-tricks.com/snippets/css/system-font-stack */
+		--text-color: #333;
+		--featured-color: #03f;
+		--featured-color-hover: #69f;
+		--highlight-color: #fcd700;
+	}
+	html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {margin: 0; padding: 0; border: 0; font-family: var(--font-system); font-size: 100%; font-weight: normal; vertical-align: baseline; background: transparent;}
+	
+	div#output:not(:empty) {position: relative; width: 1200px; height: 600px;}
+	div#output:not(:empty) canvas {position: absolute; top: 0; left: 0;}
+	#socialBox {text-align: left; position: relative; width: 1200px; height: 600px; padding: 3rem; background: #eee; color: #000; margin: 2rem auto; box-sizing: border-box;}
+	#socialBox .title {line-height: 5rem; font-weight: bold; font-size: 5rem; margin-bottom: 1rem;}
+	#socialBox .dek {line-height: 3.33rem; font-size: 3rem; margin-bottom: 1rem;}
+	#socialBox .subtext {line-height: 3rem; font-size: 1.333rem; margin-bottom: 2rem;}
+	#socialBox img {position: absolute; z-index: 100; right: 3rem; bottom: 6rem; height: 8rem;}
+	#socialBox .footer {text-align: right; position: absolute; bottom: 0; right: 0; left: 0; background: #000; color: rgba(255,255,255,1); font-weight: bold; line-height: 4rem; font-size: 2rem; padding: 0 3rem;}
+	#socialBox .footer:before {content: ''; position: absolute; bottom: 100%; left: 0; right: 0; background: #000; height: 2rem;}
+	#socialBox .footer:after {content: ''; position: absolute; bottom: 100%; left: 0; right: 0; background: #eee; height: 2rem; border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem;}
+	#output {margin: 2rem auto;}
+	</style>
+
+</head>
+
+<body>
+
+
+<div id="socialBox">
+	<div contenteditable="true" class="title">This is where the title goes.</div>
+	<div contenteditable="true" class="dek">Then this is where I put the description. It's really the element that has the most variable length, so it's a big reason why all these text elements are editable.</div>
+	<div contenteditable="true" class="subtext">Maybe put the date here?</div>
+	<img src="monkey_transparent_black.svg">
+	<div contenteditable="true" class="footer">Replace the logo...</div>
+</div>
+
+<div id="output"></div>
+
+<script>
+function captureDiv() {
+	let socialBox = document.getElementById('socialBox');
+	html2canvas(socialBox).then(
+		function (canvas) {document.getElementById('output').appendChild(canvas);});
+};
+</script>
+
+<button onclick="captureDiv()">capture</button>
+<button id="download">download</button>
+
+<script>
+document.getElementById('download').addEventListener('click', function(e) {
+	let canvasUrl = document.getElementById('output').getElementsByTagName('canvas')[0].toDataURL("image/png", 0.5);
+	console.log(canvasUrl);
+	const el = document.createElement('a');
+	el.href = canvasUrl;
+	el.download = "{url_title}-" + Date.now();
+	el.click();
+	el.remove();
+});
+</script>
+
+</body>
+</html>
